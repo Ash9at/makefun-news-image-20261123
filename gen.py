@@ -53,16 +53,18 @@ def icon_chip(cx, cy):
 def icon_drone(cx, cy):
     circle(cx, cy, (90, 70, 160))
     # sea waves
-    for k, yy in enumerate((cy + 16, cy + 26)):
+    for k, yy in enumerate((cy + 18, cy + 28)):
         pts = [(cx - 28 + i * 8, yy + (3 if (i + k) % 2 else -3)) for i in range(8)]
         d.line(pts, fill=(140, 200, 255), width=3)
     # ship hull
-    d.polygon([(cx - 6, cy + 12), (cx + 28, cy + 12), (cx + 22, cy + 2), (cx - 2, cy + 2)], fill=(255, 255, 255))
-    d.rectangle([cx + 12, cy - 8, cx + 22, cy + 2], fill=(255, 255, 255))
-    # drone
-    d.ellipse([cx - 24, cy - 16, cx - 8, cy - 8], outline=(255, 210, 63), width=3)
-    d.line([cx - 16, cy - 24, cx - 16, cy - 16], fill=(255, 210, 63), width=3)
-    d.line([cx - 26, cy - 24, cx - 6, cy - 24], fill=(255, 210, 63), width=3)
+    d.polygon([(cx - 4, cy + 14), (cx + 30, cy + 14), (cx + 24, cy + 4), (cx  - 2, cy + 4)], fill=(255, 255, 255))
+    d.rectangle([cx + 14, cy - 6, cx + 24, cy + 4], fill=(255, 255, 255))
+    # quadcopter drone, top-left
+    d.rectangle([cx - 22, cy - 14, cx - 6, cy - 6], fill=(255, 210, 63))
+    for rx in (cx - 28, cx):
+        d.line([rx, cy - 20, rx + 12, cy - 20], fill=(255, 210, 63), width=3)
+        d.line([rx + 6, cy - 26, rx + 6, cy - 20], fill=(255, 210, 63), width=2)
+    d.line([cx - 14, cy - 6, cx - 14, cy + 0], fill=(255, 210, 63), width=2)
 
 def icon_tanker(cx, cy):
     circle(cx, cy, (178, 90, 20))
@@ -80,14 +82,16 @@ def icon_factory(cx, cy):
 
 def icon_city(cx, cy):
     circle(cx, cy, (30, 120, 130))
-    d.rectangle([cx - 28, cy - 6, cx - 10, cy + 26], fill=(255, 255, 255))
-    d.rectangle([cx - 6, cy - 18, cx + 14, cy + 26], fill=(255, 255, 255))
-    d.rectangle([cx + 18, cy + 2, cx + 30, cy + 26], fill=(255, 255, 255))
-    d.rectangle([cx - 2, cy - 30, cx + 10, cy - 18], fill=(90, 170, 255))
-    d.text((cx + 4, cy - 31), "UN", font=font(FB, 13), fill=(255, 255, 255), anchor="ma")
-    d.ellipse([cx - 22, cy - 30, cx - 10, cy - 18], outline=(255, 210, 63), width=3)
-    d.line([cx - 16, cy - 36, cx - 16, cy - 30], fill=(255, 210, 63), width=3)
-    d.line([cx - 24, cy - 36, cx - 8, cy - 36], fill=(255, 210, 63), width=3)
+    d.rectangle([cx - 28, cy - 2, cx - 12, cy + 28], fill=(255, 255, 255))
+    d.rectangle([cx - 8, cy - 12, cx + 10, cy + 28], fill=(255, 255, 255))
+    d.rectangle([cx + 14, cy + 4, cx + 29, cy + 28], fill=(255, 255, 255))
+    for wx in (cx - 23, cx - 3, cx + 18):
+        for wy in (cy + 4, cy + 14):
+            d.rectangle([wx, wy, wx + 5, wy + 6], fill=(30, 120, 130))
+    # UN flag on the tall building
+    d.line([cx + 1, cy - 30, cx + 1, cy - 12], fill=(255, 255, 255), width=3)
+    d.rectangle([cx + 1, cy - 30, cx + 25, cy - 17], fill=(90, 170, 255))
+    d.text((cx + 13, cy - 30), "UN", font=font(FB, 12), fill=(255, 255, 255), anchor="ma")
 
 def icon_eye(cx, cy):
     circle(cx, cy, (200, 60, 120))
@@ -110,7 +114,7 @@ def icon_planet(cx, cy):
         d.line([cx + sx, cy + sy - 3, cx + sx, cy + sy + 3], fill=(255, 255, 255), width=2)
 
 PANELS = [
-    ("CLIMATE", icon_globe, "COP31 ENDS WITH\nNO DEAL", "Summit splits over fossil fuels"),
+    ("CLIMATE", icon_globe, "COP31 ENDS WITH\nNO DEAL", "Antalya talks split over fossil fuels"),
     ("TECH / MARKETS", icon_chip, "NVIDIA RESTORES\nCEO HUANG", "Shares jump +30% in a day"),
     ("WAR / EUROPE-AFRICA", icon_drone, "UKRAINE DRONES SINK\nRUSSIAN WARSHIP", "Ukraine says: at Benghazi, Libya"),
     ("MIDDLE EAST / ENERGY", icon_tanker, "IRAN-US STANDOFF\nIN HORMUZ STRAIT", "Tankers hit - oil near $92"),
