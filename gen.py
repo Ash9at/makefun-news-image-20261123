@@ -136,26 +136,26 @@ def icon_planet(cx, cy):
     d.line([cx - 9, cy - 10, cx + 1, cy - 1], fill=(255, 255, 255), width=2)
 
 # ---- Featured: NVIDIA ----
-FX, FY, FW, FH = 24, 178, W - 48, 168
+FX, FY, FW, FH = 24, 176, W - 48, 172
 d.rounded_rectangle([FX, FY, FX + FW, FY + FH], radius=16, fill=(24, 28, 38))
 icon_chip(FX + 92, FY + FH // 2, 56)
 tx = FX + 178
-d.text((tx, FY + 22), "TOP STORY  -  US / MARKETS", font=font(FB, 21), fill=(255, 190, 80))
+d.text((tx, FY + 20), "TOP STORY  ·  US / MARKETS", font=font(FB, 21), fill=(255, 190, 80))
 hf = fit_multi(["NVIDIA BRINGS BACK", "CEO JENSEN HUANG"], FB, 38, FW - 178 - 24)
-d.multiline_text((tx, FY + 48), "NVIDIA BRINGS BACK\nCEO JENSEN HUANG", font=hf, fill=(255, 255, 255), spacing=2)
-d.text((tx, FY + FH - 32), "Reinstated 11 days after his exit - shares surge 30%+", font=fit("Reinstated 11 days after his exit - shares surge 30%+", FR, 23, FW - 178 - 24, 18), fill=(205, 210, 220))
+d.multiline_text((tx, FY + 46), "NVIDIA BRINGS BACK\nCEO JENSEN HUANG", font=hf, fill=(255, 255, 255), spacing=2)
+d.text((tx, FY + FH - 36), "Reinstated 11 days after his exit · shares surge 30%+", font=fit("Reinstated 11 days after his exit · shares surge 30%+", FR, 23, FW - 178 - 24, 18), fill=(205, 210, 220))
 
 # ---- Grid panels ----
 PANELS = [
     ("GLOBAL / CLIMATE", icon_globe, "COP31 ENDS WITH\nNO DEAL", "Antalya talks split over fossil fuels"),
-    ("EUROPE-AFRICA / WAR", icon_drone, "UKRAINE DRONES SINK\nRUSSIAN WARSHIP", "Off Benghazi, Libya - Kyiv claims"),
-    ("MIDDLE EAST / ENERGY", icon_strait, "IRAN-US STANDOFF IN\nSTRAIT OF HORMUZ", "Tankers hit - oil near $92"),
-    ("ASIA / DISASTER", icon_factory, "INDONESIA FACTORY\nFIRE IN JAVA", "At least 3 dead, 36 missing"),
+    ("EUROPE-AFRICA / WAR", icon_drone, "UKRAINE DRONES SINK\nRUSSIAN WARSHIP", "Off Benghazi, Libya · Kyiv claims"),
+    ("MIDDLE EAST / ENERGY", icon_strait, "IRAN-US STANDOFF IN\nSTRAIT OF HORMUZ", "Tankers hit · oil near $92"),
+    ("ASIA / DISASTER", icon_factory, "INDONESIA FACTORY\nFIRE KILLS 24", "About 30 still missing near Jakarta"),
     ("AFRICA / WAR", icon_city, "KHARTOUM: DRONES HIT\nHOMES & UN SITE", "Night strikes on Sudan's capital"),
-    ("ASIA / POLITICS", icon_gov, "S. KOREA NOMINATES\nFIRST WOMAN SPY CHIEF", "Pending confirmation - first since 1961"),
+    ("ASIA / POLITICS", icon_gov, "S. KOREA NOMINATES\nFIRST WOMAN SPY CHIEF", "Awaits hearing · first since 1961"),
 ]
-X0, Y0 = 24, 358
-PW, PH, GAP = 488, 178, 12
+X0, Y0 = 24, 360
+PW, PH, GAP = 488, 172, 10
 for i, (cat, icon, head, sub) in enumerate(PANELS):
     col, row = i % 2, i // 2
     x = X0 + col * (PW + GAP)
@@ -166,17 +166,17 @@ for i, (cat, icon, head, sub) in enumerate(PANELS):
     d.text((tx, y + 16), cat, font=font(FB, 19), fill=RED)
     hf = fit_multi(head.split("\n"), FB, 30, PW - 128 - 14)
     d.multiline_text((tx, y + 44), head, font=hf, fill=INK, spacing=3)
-    d.text((tx, y + PH - 38), sub, font=fit(sub, FR, 22, PW - 128 - 14, 17), fill=SUB)
+    d.text((tx, y + PH - 36), sub, font=fit(sub, FR, 21, PW - 128 - 14, 17), fill=SUB)
 
 # ---- Bottom strip: space ----
-SX, SY, SW, SH = 24, 916, W - 48, 62
+SX, SY, SW, SH = 24, 904, W - 48, 72
 d.rounded_rectangle([SX, SY, SX + SW, SY + SH], radius=12, fill=CARD, outline=LINE, width=2)
-icon_planet(SX + 44, SY + SH // 2)
-strip = "EUROPE-JAPAN / SPACE:  PROBE SAFE IN MERCURY ORBIT - BepiColombo, after an 8-year journey"
-d.text((SX + 88, SY + SH // 2), strip, font=fit(strip, FB, 23, SW - 88 - 16, 16), fill=INK, anchor="lm")
+icon_planet(SX + 48, SY + SH // 2)
+strip = "EUROPE-JAPAN / SPACE:  PROBE SAFE IN MERCURY ORBIT · BepiColombo, after an 8-year journey"
+d.text((SX + 94, SY + SH // 2), strip, font=fit(strip, FB, 23, SW - 94 - 16, 16), fill=INK, anchor="lm")
 
 # ---- Footer with sources ----
-d.text((W // 2, 990), "Sources: Reuters, AP, AFP, CNN, Al Jazeera, Yonhap, ESA", font=font(FB, 18), fill=SUB, anchor="ma")
+d.text((W // 2, 986), "Sources: Reuters, AP, AFP, CNN, Al Jazeera, Yonhap, ESA", font=font(FB, 18), fill=SUB, anchor="ma")
 
 img.save("/home/hatch/workspace/makefun/news-image/entry.png")
 print("saved", img.size)
